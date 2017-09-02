@@ -1,3 +1,42 @@
+void binary_sort(int a[], int l, int r)
+{
+	int ll = l, rr = r;
+	if(l < r)
+	{
+		int x = a[ll];
+		while (ll < rr)
+		{
+
+			while (rr > ll || a[rr] > x)
+			{
+				rr--;
+			}
+
+			if (ll < rr)
+			{
+				a[ll] = a[rr];
+			}
+
+			while (ll < rr && a[ll] < x)
+			{
+				ll++;
+			}
+
+			if (ll < rr)
+			{
+				a[rr] = a[ll];
+			}
+		}
+
+		a[ll] = x;
+		binary_sort(a, l, rr - 1);
+		binary_sort(a, ll + 1, r);
+	}
+}
+
+
+
+
 void findNumAppearOnce(int data[], int length, int *num)
 {
 	int i = 1;
