@@ -1,3 +1,58 @@
+void bubble_sort(int a[], int len) 
+{
+	int tmp = 0;
+	for(int i = 0;i<len - 1; i++)
+	{
+		for (int j = 0; j < len-i-1; j++)
+		{
+			if (a[j] > a[j + 1]) 
+			{
+				tmp = a[j];
+				a[j] = a[j + 1];
+				a[j + 1] = tmp;
+			}
+		}
+	}
+}
+
+void select_sort(int a[], int len)
+{
+	int i, j, min,tmp;
+
+	for (i = 0; i < len - 1; i++)
+	{
+		min = i;
+		for (j = i + 1; j < len; j++)
+		{
+			if (a[j] < a[min])
+			{
+				min = j;
+			}
+		}
+
+		tmp = a[i];
+		a[i] = a[min];
+		a[min] = tmp;
+	}
+}
+
+
+void insert_sort(int a[], const int len)
+{
+	int i, j, k;
+	for (i = 1; i < len; ++i)
+	{
+		k = a[i];
+		j = i - 1;
+		while ((j >= 0) && (k < a[j]))
+		{
+			a[j + 1] = a[j];
+			--j;
+		}
+		a[j + 1] = k;
+	}
+}
+
 void binary_sort(int a[], int l, int r)
 {
 	int ll = l, rr = r;
