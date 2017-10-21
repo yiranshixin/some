@@ -176,3 +176,28 @@ void findNumsAppearOnce3(int data[], int length, int *num1, int *num2, int *num3
 		findNumAppearOnce(&d1[0], d1.size(), num3);
 	}
 }
+
+void swap(char *a, char *b)
+{
+	char tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+void AllRange(char *pszStr, int k, int m)
+{
+	if (k == m)
+	{
+		static int s_i = 1;
+		printf("  第%3d个排列\t%s\n", s_i++, pszStr);
+	}
+	else
+	{
+		for (int i = k; i <= m; i++)
+		{
+			swap(pszStr + k, pszStr + i);
+			AllRange(pszStr, k + 1, m);
+			swap(pszStr + k, pszStr + i);
+		}
+	}
+}
