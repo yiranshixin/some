@@ -201,3 +201,105 @@ void AllRange(char *pszStr, int k, int m)
 		}
 	}
 }
+
+int bsearch_asc(int a[], int b, int e, int key)
+{
+	int mid = -1;
+
+	if (key < a[b]) return mid;
+	if (key > a[e]) return mid;
+	
+	if (key == a[b]) return b;
+	if (key == a[e]) return e;
+
+	int ib = b, ie = e;
+	while (ib <= ie)
+	{
+		mid = (ib + ie) / 2;
+		if (key == a[mid]) return mid;
+		if (key < a[mid])
+		{
+			ie = mid -1;
+			continue;
+		}
+		if (key > a[mid])
+		{
+			ib = mid + 1;
+			continue;
+		}
+	}
+
+	return -1;
+}
+
+
+int bsearch_asc_equal(int a[], int b, int e, int key)
+{
+	int mid = -1;
+
+	if (key < a[b]) return mid;
+	if (key > a[e]) return mid;
+
+	if (key == a[b]) return b;
+	if (key == a[e])
+	{
+		int pre = b, cur = e;
+		while(pre <= cur)
+		{
+			mid = (pre + cur) / 2;
+			if (key == a[mid])
+			{
+				cur = mid - 1;
+			}
+			else
+			{
+				pre = mid + 1;
+				if (key == a[pre])
+				{
+					return pre;
+				}
+			}
+		}
+	}
+
+	int ib = b, ie = e;
+	while (ib <= ie)
+	{
+		mid = (ib + ie) / 2;
+		if (key == a[mid])
+		{
+			int pre = ib, cur = mid;
+			while (pre <= cur)
+			{
+				mid = (pre + cur) / 2;
+				if (key == a[mid])
+				{
+					cur = mid - 1;
+				}
+				else
+				{
+					pre = mid + 1;
+					if (key == a[pre])
+					{
+						return pre;
+					}
+				}
+			}
+
+		}
+		if (key < a[mid])
+		{
+			ie = mid - 1;
+			continue;
+		}
+		if (key > a[mid])
+		{
+			ib = mid + 1;
+			continue;
+		}
+	}
+
+	return -1;
+}
+
+
